@@ -78,7 +78,7 @@ def import_fd():
 # شريط علوي بسيط مع اختيار المظهر
 c_top_l, c_top_r = st.columns([3,1])
 with c_top_l:
-    st.markdown("<div class='hero'><h1>توقّع مباريات كرة القدم — واجهة واضحة ومميّزة ⚽</h1></div>", unsafe_allow_html=True)
+    st.markdown("<div class='hero'><h1>توقّع مباريات كرة القدم —    ⚽</h1></div>", unsafe_allow_html=True)
 with c_top_r:
     theme = st.selectbox("المظهر", ["فاتح","داكن"], index=(0 if st.session_state.ui_theme=="فاتح" else 1))
     if theme != st.session_state.ui_theme:
@@ -104,11 +104,11 @@ with st.expander("إعداد مفتاح API (Football-Data.org)", expanded=True)
 with st.form("predict_form"):
     c1, c2 = st.columns(2)
     with c1:
-        team1 = st.text_input("الفريق 1 (قد يكون صاحب الأرض)", "Real Sociedad")
+        team1 = st.text_input("الفريق 1 (قد يكون صاحب الأرض)", "")
         team1_home = st.checkbox("هل الفريق 1 صاحب الأرض؟", value=True)
         comp_code = st.selectbox("كود المسابقة (اختياري)", options=["","CL","PD","PL","SA","BL1","FL1","DED","PPL","BSA","ELC"], index=2)
     with c2:
-        team2 = st.text_input("الفريق 2", "Real Madrid")
+        team2 = st.text_input("الفريق 2", "")
         max_goals = st.text_input("حجم شبكة الأهداف (فارغ = ديناميكي)", value="")
 
     with st.expander("خيارات عرض البيانات الإضافية"):
@@ -253,5 +253,6 @@ if submitted:
 
     with st.expander("الإخراج الكامل (JSON)"):
         st.json(res)
+
 
 
