@@ -1,8 +1,8 @@
 [theme]
 base = "dark"
-primaryColor = "#4FA3FF"
-backgroundColor = "#0B1020"
-secondaryBackgroundColor = "#121A2A"
-textColor = "#FFFFFF"
+primaryColor = "#1E90FF"            # أزرق سماوي للأزرار والروابط
+backgroundColor = "#0D1117"         # خلفية داكنة (رمادي/أسود أنيق)
+secondaryBackgroundColor = "#161B22" # خلفية أفتح قليلاً للـ sidebar والبلوكات
+textColor = "#FFFFFF"               # نص أبيض ناصع باش يبان بوضوح
+font = "sans serif"                 # خط حديث وبسيط
 
-font = "sans serif
