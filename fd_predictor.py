@@ -2260,4 +2260,4 @@ if __name__ == "__main__":
             log(f"خطأ أثناء التوقع: {e}")
             sys.exit(1)
     else:
-        log("Run via CLI. Example:\n  python script.py --team1 \"Real Sociedad\" --team2 \"Real Madrid\" --team1_is_home true --comp PD")
+        log("Run via CLI. Example:\n  python script.py --team1 \" ...\" --team2 \"....\" --team1_is_home true --comp PD")
