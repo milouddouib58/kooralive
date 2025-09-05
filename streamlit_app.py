@@ -105,8 +105,8 @@ def import_fd():
     return importlib.import_module("fd_predictor")
 
 # Hero
-st.title("توقّع مباريات كرة القدم — واجهة عصرية للجوال ⚽📱")
-st.caption("Poisson + Dixon-Coles + ELO + عوامل قبل المباراة — مع مظهر زجاجي أنيق")
+st.title("⚽   توقّع مباريات كرة القدم   ⚽")
+st.caption("Poisson + Dixon-Coles + ELO +   عوامل قبل المباراة  ")
 
 with st.expander("إعداد مفتاح API (Football-Data.org) — ضروري للتشغيل", expanded=True):
     current_key = os.getenv("FOOTBALL_DATA_API_KEY", "")
@@ -124,13 +124,13 @@ with st.form("predict_form"):
     ctop1, ctop2 = st.columns(2)
     with ctop1:
         st.markdown("<div class='neon-card'>", unsafe_allow_html=True)
-        team1 = st.text_input("الفريق 1 (قد يكون صاحب الأرض)", "Real Sociedad")
+        team1 = st.text_input("الفريق 1 (قد يكون صاحب الأرض)", " ")
         team1_home = st.checkbox("هل الفريق 1 صاحب الأرض؟", value=True)
         comp_code = st.selectbox("كود المسابقة (اختياري)", options=COMP_CHOICES, index=1)
         st.markdown("</div>", unsafe_allow_html=True)
     with ctop2:
         st.markdown("<div class='neon-card'>", unsafe_allow_html=True)
-        team2 = st.text_input("الفريق 2", "Real Madrid")
+        team2 = st.text_input("الفريق 2", "  ")
         max_goals = st.text_input("حجم شبكة الأهداف (فارغ = ديناميكي)", value="")
         st.markdown("</div>", unsafe_allow_html=True)
 
@@ -283,3 +283,4 @@ if submitted:
 
     with st.expander("الإخراج الكامل (JSON)"):
         st.json(res)
+
