@@ -1,8 +1,9 @@
 [theme]
-base = "dark"
+base = "light"
 primaryColor = "#1E90FF"            # أزرق سماوي للأزرار والروابط
 backgroundColor = "#0D1117"         # خلفية داكنة (رمادي/أسود أنيق)
 secondaryBackgroundColor = "#161B22" # خلفية أفتح قليلاً للـ sidebar والبلوكات
 textColor = "#FFFFFF"               # نص أبيض ناصع باش يبان بوضوح
 font = "sans serif"                 # خط حديث وبسيط
+
 
