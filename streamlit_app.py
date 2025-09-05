@@ -44,7 +44,7 @@ def inject_css(theme="فاتح"):
         css = """
         <style>
         :root{
-          --bg:#0b1020; --fg:#eaf2ff; --muted:#a3b1c6;
+          --bg:#0b1020; --fg:#ffffff; --muted:#a3b1c6;
           --card:#121a2a; --border:#1e2a3b;
           --primary:#4fa3ff; --ok:#22c55e; --warn:#fbbf24; --err:#f87171;
           --chip:#0f1626; --chip-fg:#dfeaff;
@@ -253,3 +253,4 @@ if submitted:
 
     with st.expander("الإخراج الكامل (JSON)"):
         st.json(res)
+
