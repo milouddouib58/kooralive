@@ -1,8 +1,7 @@
 [theme]
 base = "light"
-primaryColor = "#1E90FF"            # أزرق سماوي للأزرار
-backgroundColor = "#FFFFFF"         # خلفية بيضاء
-secondaryBackgroundColor = "#F0F2F6" # رمادي فاتح للـ sidebar
-textColor = "#000000"               # أسود للنصوص
+primaryColor = "#2563EB"
+backgroundColor = "#F7FAFC"
+secondaryBackgroundColor = "#FFFFFF"
+textColor = "#0F172A"
 font = "sans serif"
-
