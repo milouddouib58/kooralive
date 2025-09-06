@@ -1,3 +1,5 @@
+
+3urllib
 streamlit
 requests
-urllib3
+google-generativeai
