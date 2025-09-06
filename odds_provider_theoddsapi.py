@@ -9,15 +9,15 @@ from typing import Dict, Any, List, Tuple
 # 📌 إعدادات أساسية
 # ==========================================================
 BASE = os.getenv("ODDS_API_BASE", "https://api.the-odds-api.com/v4")
-API_KEY = os.getenv("ODDS_API_KEY", "")
 
 
 # ==========================================================
 # 📌 دالة أساسية لطلب البيانات من Odds API
 # ==========================================================
 def _get(path: str, params: Dict[str, Any] = None, timeout: int = 20):
+    # اقرأ المفتاح من البيئة عند كل استدعاء (ديناميكي)
     params = dict(params or {})
-    apikey = params.pop("apiKey", None) or API_KEY
+    apikey = params.pop("apiKey", None) or os.getenv("ODDS_API_KEY") or ""
     if not apikey:
         raise RuntimeError("ODDS_API_KEY غير مضبوط. ضعه في Secrets أو البيئة.")
 
@@ -25,7 +25,8 @@ def _get(path: str, params: Dict[str, Any] = None, timeout: int = 20):
     params["apiKey"] = apikey
 
     r = requests.get(url, params=params, timeout=timeout)
-    if r.status_code == 429:
+
+    if r.status_code == 429:  # Too Many Requests
         ra = int(r.headers.get("Retry-After", "60"))
         time.sleep(ra)
         r = requests.get(url, params=params, timeout=timeout)
