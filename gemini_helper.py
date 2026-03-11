@@ -1,12 +1,12 @@
 # -*- coding: utf-8 -*-
 import os
 import json
-import google.generativeai as genai
+from google import genai  # الحزمة الجديدة
 
 
 def _configure_gemini(api_key: str = None):
     """
-    تهيئة مكتبة Gemini باستخدام مفتاح API.
+    تهيئة عميل Gemini باستخدام مفتاح API.
     - إذا لم يتم تمرير api_key يتم البحث عنه في متغير البيئة GEMINI_API_KEY.
     """
     key = api_key or os.getenv("GEMINI_API_KEY")
@@ -15,13 +15,14 @@ def _configure_gemini(api_key: str = None):
             "GEMINI_API_KEY غير مضبوط. "
             "ضعه في Secrets أو أدخله في الحقل داخل التطبيق."
         )
-    genai.configure(api_key=key)
+    # إنشاء عميل (client) بدلاً من configure
+    return genai.Client(api_key=key)
 
 
 def analyze_with_gemini(
     payload: dict,
     api_key: str = None,
-    model_name: str = "gemini-1.5-flash",
+    model_name: str = "gemini-2.0-flash",  # تم التحديث إلى نموذج موجود
     temperature: float = 0.4,
     max_output_tokens: int = 1400,
     language: str = "ar",
@@ -33,7 +34,7 @@ def analyze_with_gemini(
     Args:
         payload (dict): البيانات المراد تحليلها.
         api_key (str, optional): مفتاح Gemini API.
-        model_name (str): اسم النموذج المستخدم.
+        model_name (str): اسم النموذج المستخدم (يجب أن يكون متاحاً في ListModels).
         temperature (float): تحكم في تنوع الإجابة.
         max_output_tokens (int): الحد الأقصى لعدد الرموز الناتجة.
         language (str): لغة التحليل.
@@ -42,16 +43,13 @@ def analyze_with_gemini(
     Returns:
         str: النص التحليلي الناتج من Gemini.
     """
-    # تهيئة Gemini
-    _configure_gemini(api_key)
-
-    # تحميل النموذج
-    model = genai.GenerativeModel(model_name)
+    # تهيئة العميل
+    client = _configure_gemini(api_key)
 
     # تحويل البيانات إلى JSON مرتب
     json_blob = json.dumps(payload, ensure_ascii=False, indent=2)
 
-    # --- البرومبت المطور ---
+    # --- البرومبت المطور (نفس الكود) ---
     prompt = f"""
     أنت محلل مراهنات رياضية وخبير في سرد البيانات، ومهمتك هي تحويل بيانات الأودز المعقدة إلى تحليل واضح وقابل للتنفيذ.
     البيانات المقدمة لك بصيغة JSON تحتوي على أسعار السوق المجمعة، والاحتمالات العادلة المحسوبة بعد إزالة هامش الربح (overround)، واقتراحات كيلي.
@@ -90,10 +88,11 @@ def analyze_with_gemini(
     ```
     """
 
-    # استدعاء النموذج
-    response = model.generate_content(
-        prompt,
-        generation_config={
+    # استدعاء النموذج باستخدام العميل الجديد
+    response = client.models.generate_content(
+        model=model_name,
+        contents=prompt,
+        config={
             "temperature": temperature,
             "max_output_tokens": max_output_tokens,
         },
