@@ -388,7 +388,7 @@ if events_data and events_data.get("events"):
     col_g1, col_g2, col_g3 = st.columns(3)
     with col_g1:
         gemini_model = st.selectbox(
-            "الموديل", ["gemini-1.5-flash", "gemini-1.5-pro"], index=0
+            "الموديل", ["gemini-2.0-flash", "gemini-2.5-flash","gemini-flash-latest", "gemini-2.0-flash-lite", "gemini-2.5-flash-image" ], index=0
         )
     with col_g2:
         gemini_temp = st.slider("درجة الإبداع", 0.0, 1.0, 0.4, 0.05)
@@ -428,3 +428,4 @@ if events_data and events_data.get("events"):
     st.markdown("</div>", unsafe_allow_html=True)
 else:
     st.info("اختر الدوري واضغط “جلب المباريات والأودز” لعرض المباريات.")
+
